@@ -20,11 +20,11 @@ function feedapi2feeds_drush_help($section) {
  * Implementation of hook_drush_command().
  */
 function feedapi2feeds_drush_command() {
-  $items['feedapi2feeds migrateAll'] = array(
+  $items['feedapi2feeds-migrateAll'] = array(
     'callback' => 'feedapi2feeds_drush_migrate_all',
     'description' => dt('Migrates all the FeedAPI content-types on the site to Feeds importer configurations')
   );
-  $items['feedapi2feeds migrate'] = array(
+  $items['feedapi2feeds-migrate'] = array(
     'callback' => 'feedapi2feeds_drush_migrate',
     'description' => dt('Migrates the given FeedAPI content-type to Feeds importer configurations'),
     'arguments' => array(

@@ -255,15 +255,24 @@ class FeedAPI2Feeds {
       if (!empty($custom_mapping) && is_array($custom_mapping)) {
         $sources = $importer->parser->getMappingSources();
         $targets = $importer->processor->getMappingTargets();
+        $mappings = array();
         foreach ($custom_mapping as $source => $target) {
           $matched_source = $this->match($source, $sources);
           $matched_target = $this->match($target, $targets);
           if (!empty($matched_source) && !empty($matched_target)) {
-            $importer->processor->addMapping($matched_source, $matched_target, FALSE);
+            //Replacement for addMapping() modified from: http://drupal.org/files/issues/feeds.849840.8.patch
+            $mappings[] = array(
+              'source' => $matched_source,
+              'target' => $matched_target,
+              'unique' => FALSE,
+            );
           }
           else {
             $this->messages[] = t('Failed to migrate this mapping (@type): @source - @target', array('@type' => $type, '@source' => $source, '@target' => $target));
           }
+        }
+        if (!empty($mapping)) {
+          $importer->processor->addConfig($mappings);
         }
       }
 
@@ -275,8 +284,16 @@ class FeedAPI2Feeds {
 
       // We have default mapping for these processors
       if ($processor == 'feedapi_node' || $processor == 'feedapi_fast') {
+        $mapping = array();
         foreach ($this->default_mapping as $mapping) {
-          $importer->processor->addMapping($mapping['source'], $mapping['target'], $mapping['unique']);
+          $mappings[] = array(
+            'source' => $mapping['source'],
+            'target' => $mapping['target'],
+            'unique' => $mapping['unique'],
+          );
+        }
+        if (!empty($mapping)) {
+          $importer->processor->addConfig($mappings);
         }
       }
 
