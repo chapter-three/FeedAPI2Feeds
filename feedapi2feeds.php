@@ -395,6 +395,9 @@ class FeedAPI2Feeds {
     if (!function_exists('data_get_table')) {
       throw new Exception("Migrating from feedapi_fast requires Data module");
     }
+    if (!module_exists('feeds_defaults')) {
+      throw new Exception("Migrating from feedapi_fast requires a feeds_defaults module created by features.");
+    }
     // Set default importer config
     module_load_include('inc', 'feeds_defaults', 'feeds_defaults.features');
     $default_importer = feeds_defaults_feeds_importer_default();
