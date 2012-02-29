@@ -3,12 +3,17 @@ FeedAPI2Feeds migration script
 ------------------------------
 
 Source: FeedAPI 1.8 or later in 1.x branch
-Destination: Feeds 1.0 (built for 6.x-1.0-alpha9)
+Destination: Feeds 1.0 (built for 6.x-1.0-alpha11)
 
 http://drupal.org/project/feedapi
 http://drupal.org/project/feedapi_mapper
 http://drupal.org/project/feeds
 
+Status
+------
+Updated to *mostly* work as of 2/28/12. It can now be installed, and
+drush migrateAll run without PHP errors. SQL warnings will occur if feedapi_mapper
+is not installed. This needs work, but works well enough for my needs.
 
 Purpose
 -------
