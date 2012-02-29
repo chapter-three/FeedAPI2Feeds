@@ -1,6 +1,4 @@
 <?php
-// $Id$
-
 /**
  * @file
  *   Provides a page callback to migrate from FeedAPI to Feeds, using the Batch API

@@ -1,6 +1,4 @@
 <?php
-// $Id$
-
 /**
  * @file
  * FeedAPI to Feeds migration business logic

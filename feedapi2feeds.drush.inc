@@ -1,6 +1,4 @@
 <?php
-// $Id$
-
 /**
  * @file
  * Drush commands for FeedAPI2Feeds migration.
